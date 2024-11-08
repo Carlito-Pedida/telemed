@@ -81,9 +81,8 @@ export const registerPatient = async ({
       ID.unique(),
       {
         identificationDocumentId: file?.$id || null,
-        identificationDocumentUrl: file?.$id
-          ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`
-          : null,
+        identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
+
         ...patient
       }
     );
