@@ -4,7 +4,8 @@ import { ID } from "node-appwrite";
 import {
   APPOINTMENT_COLLECTION_ID,
   DATABASE_ID,
-  databases
+  databases,
+  PATIENT_COLLECTION_ID
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
 

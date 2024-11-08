@@ -55,6 +55,8 @@ const AppointmentForm = ({
         break;
     }
 
+    console.log(onSubmit);
+
     try {
       if (type === "create" && patientId) {
         const appointmentData = {
@@ -73,7 +75,7 @@ const AppointmentForm = ({
         if (appointment) {
           form.reset();
           router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.id}`
           );
         }
       }
@@ -153,7 +155,7 @@ const AppointmentForm = ({
                 <CustomFormField
                   fieldType={FormFieldType.TEXTAREA}
                   control={form.control}
-                  name="reason"
+                  name="reasonForApppointment"
                   label="Reason for Apppointment"
                   placeholder="ex. Annual/Monthly checkup..."
                 />

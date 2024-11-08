@@ -55,9 +55,11 @@ const AppointmentForm = ({
         break;
     }
 
+    console.log(onSubmit);
+
     try {
       if (type === "create" && patientId) {
-        const appointmentData = {
+        const appointment = {
           userId,
           patient: patientId,
           primaryPhysician: values.primaryPhysician,
@@ -66,15 +68,34 @@ const AppointmentForm = ({
           note: values.note,
           status: status as Status
         };
-        const appointment = await createAppointment(appointmentData);
 
-        console.log(appointment);
+        console.log("Creating new appointment:", appointment);
+        const newAppointment = await createAppointment(appointment);
+        console.log("New appointment response:", newAppointment);
 
-        if (appointment) {
+        if (newAppointment) {
           form.reset();
           router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
+            `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
           );
+          // const appointmentData = {
+          //   userId,
+          //   patient: patientId,
+          //   primaryPhysician: values.primaryPhysician,
+          //   schedule: new Date(values.schedule),
+          //   reason: values.reason!,
+          //   note: values.note,
+          //   status: status as Status
+          // };
+          // const appointment = await createAppointment(appointmentData);
+
+          // console.log(appointment);
+
+          // if (appointment) {
+          //   form.reset();
+          //   router.push(
+          //     `/patients/${userId}/new-appointment/success?appointmentId=${appointment.id}`
+          //   );
         }
       }
     } catch (error) {

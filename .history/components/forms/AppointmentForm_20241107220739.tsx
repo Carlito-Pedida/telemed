@@ -55,6 +55,8 @@ const AppointmentForm = ({
         break;
     }
 
+    console.log("BEFORE THE TYPE, type");
+
     try {
       if (type === "create" && patientId) {
         const appointmentData = {
@@ -73,7 +75,7 @@ const AppointmentForm = ({
         if (appointment) {
           form.reset();
           router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.id}`
           );
         }
       }
@@ -147,13 +149,14 @@ const AppointmentForm = ({
                 label="Appointment date selector"
                 showTimeSelect
                 dateFormat="MM/dd/yyy - h:mm aa"
+                placeholder="Select your appointment date"
               />
 
               <div className="flex flex-col gap-6 xl:flex-row">
                 <CustomFormField
                   fieldType={FormFieldType.TEXTAREA}
                   control={form.control}
-                  name="reason"
+                  name="reasonForApppointment"
                   label="Reason for Apppointment"
                   placeholder="ex. Annual/Monthly checkup..."
                 />
