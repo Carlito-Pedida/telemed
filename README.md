@@ -1,8 +1,8 @@
+INTRODUCTION
+
 A healthcare patient management application that allows patients to easily register, book, and manage their appointments with doctors, featuring administrative tools for scheduling, confirming, and canceling appointments, along with SMS notifications, all built using Next.js.
 
 If you're getting started and need assistance or face any bugs, join our active Discord community with over 34k+ members. It's a place where people help each other out.
-
-
 
 ⚙️ Tech Stack
 Next.js
@@ -11,6 +11,7 @@ Typescript
 TailwindCSS
 ShadCN
 Twilio
+
 🔋 Features
 👉 Register as a Patient: Users can sign up and create a personal profile as a patient.
 
