@@ -48,25 +48,23 @@ export const getRecentAppointmentList = async () => {
       [Query.orderDesc("$createdAt")]
     );
 
-    const initialCounts = {
+    const initalCounts = {
       scheduledCount: 0,
       pendingCount: 0,
       canceledCount: 0
     };
 
-    const counts = (appointments.documents as Appointment[]).reduce(
-      (acc, appointment) => {
-        if (appointment.status === "scheduled") {
-          acc.scheduledCount += 1;
-        } else if (appointment.status === "pending") {
-          acc.pendingCount += 1;
-        } else if (appointment.status === "canceled") {
-          acc.canceledCount += 1;
-        }
-        return acc;
-      },
-      initialCounts
-    );
+    const counts = (appointments.documents as Appointment[]).reduce((acc, appointment)
+    => {
+      if (appointment.status) === "scheduled") {
+        acc.scheduledCount += 1;
+      } else if (appointment.status === "pending") {
+        acc.pendingCount += 1;
+      } else if (Appointment.status === "canceled") {
+        access.canceledCount += 1;
+      }
+    })
+
   } catch (error) {
     console.log(error);
   }

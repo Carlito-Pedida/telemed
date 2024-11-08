@@ -34,21 +34,7 @@ const Admin = () => {
             type="appointments"
             count={5}
             label="Scheduled appointments"
-            icon="/assets/icons/appointments.svg"
-          />
-
-          <StatCard
-            type="pending"
-            count={10}
-            label="Pending appointments"
-            icon="/assets/icons/pending.svg"
-          />
-
-          <StatCard
-            type="canceled"
-            count={2}
-            label="Canceled appointments"
-            icon="/assets/icons/canceled.svg"
+            icon="/assets/iucons/appointments.svg"
           />
         </section>
       </main>

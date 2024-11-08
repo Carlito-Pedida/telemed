@@ -7,7 +7,6 @@ import {
   databases
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
-import { Appointment } from "@/types/appwrite.types";
 
 export const createAppointment = async (
   appointment: CreateAppointmentParams
@@ -48,25 +47,11 @@ export const getRecentAppointmentList = async () => {
       [Query.orderDesc("$createdAt")]
     );
 
-    const initialCounts = {
+    const initalCounts = {
       scheduledCount: 0,
       pendingCount: 0,
       canceledCount: 0
     };
-
-    const counts = (appointments.documents as Appointment[]).reduce(
-      (acc, appointment) => {
-        if (appointment.status === "scheduled") {
-          acc.scheduledCount += 1;
-        } else if (appointment.status === "pending") {
-          acc.pendingCount += 1;
-        } else if (appointment.status === "canceled") {
-          acc.canceledCount += 1;
-        }
-        return acc;
-      },
-      initialCounts
-    );
   } catch (error) {
     console.log(error);
   }

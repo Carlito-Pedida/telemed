@@ -45,10 +45,10 @@ const Admin = () => {
           />
 
           <StatCard
-            type="canceled"
+            type="cancelled"
             count={2}
-            label="Canceled appointments"
-            icon="/assets/icons/canceled.svg"
+            label="Cancelled appointments"
+            icon="/assets/icons/cancelled.svg"
           />
         </section>
       </main>

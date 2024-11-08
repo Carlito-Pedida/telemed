@@ -48,7 +48,7 @@ const Admin = () => {
             type="canceled"
             count={2}
             label="Canceled appointments"
-            icon="/assets/icons/canceled.svg"
+            icon="/assets/icons/cancelled.svg"
           />
         </section>
       </main>

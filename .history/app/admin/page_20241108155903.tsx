@@ -1,4 +1,3 @@
-import StatCard from "@/components/StatCard";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -27,29 +26,6 @@ const Admin = () => {
           <p className="text-dark-700">
             Start the day managing new appoinments.
           </p>
-        </section>
-
-        <section className="admin-stat">
-          <StatCard
-            type="appointments"
-            count={5}
-            label="Scheduled appointments"
-            icon="/assets/icons/appointments.svg"
-          />
-
-          <StatCard
-            type="pending"
-            count={10}
-            label="Pending appointments"
-            icon="/assets/icons/pending.svg"
-          />
-
-          <StatCard
-            type="canceled"
-            count={2}
-            label="Canceled appointments"
-            icon="/assets/icons/canceled.svg"
-          />
         </section>
       </main>
     </div>
