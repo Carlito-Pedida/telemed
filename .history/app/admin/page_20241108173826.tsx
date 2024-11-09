@@ -1,6 +1,4 @@
 import StatCard from "@/components/StatCard";
-import { columns, Payment } from "@/components/table/columns";
-import { DataTable } from "@/components/table/DataTable";
 import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,20 +42,18 @@ const Admin = async () => {
 
           <StatCard
             type="pending"
-            count={appointments.pendingCount}
+            count={10}
             label="Pending appointments"
             icon="/assets/icons/pending.svg"
           />
 
           <StatCard
             type="canceled"
-            count={appointments.canceled}
+            count={2}
             label="Canceled appointments"
             icon="/assets/icons/canceled.svg"
           />
         </section>
-
-        <DataTable columns={columns} data={appointments.documents} />
       </main>
     </div>
   );
