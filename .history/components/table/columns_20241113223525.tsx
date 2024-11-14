@@ -16,15 +16,19 @@ export const columns: ColumnDef<Appointment>[] = [
   {
     accessorKey: "patient",
     header: "Patient",
-    cell: ({ row }) => (
-      <p className="text-14-medium">{row.original.patient.name}</p>
-    )
+    cell: ({ row }) => {
+      const appointment = row.original;
+      return <p className="text-14-medium">{appointment.patient.name}</p>;
+    }
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <div className="min-w-[115px]">
+      <div
+        className="
+        min-w-[115px"
+      >
         <StatusBadge status={row.original.status} />
       </div>
     )
@@ -33,7 +37,7 @@ export const columns: ColumnDef<Appointment>[] = [
     accessorKey: "schedule",
     header: "Appointment",
     cell: ({ row }) => (
-      <p className="text-14-regular min-w-[100px]">
+      <p className="text-14-regular min-w-[100px">
         {formatDateTime(row.original.schedule).dateTime}
       </p>
     )
@@ -49,13 +53,13 @@ export const columns: ColumnDef<Appointment>[] = [
       return (
         <div className="flex items-center gap-3">
           <Image
-            src={`${doctor?.image}`}
-            alt={`{doctor?.image}`}
+            src={doctor?.image}
+            alt={doctor?.image}
             width={100}
             height={100}
             className="size-8"
           />
-          <p className="whitespace-nowrap">{doctor?.name}</p>
+          <p>{doctor?.name}</p>
         </div>
       );
     }

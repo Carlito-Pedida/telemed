@@ -55,7 +55,7 @@ export const columns: ColumnDef<Appointment>[] = [
             height={100}
             className="size-8"
           />
-          <p className="whitespace-nowrap">{doctor?.name}</p>
+          <p>{doctor?.name}</p>
         </div>
       );
     }
