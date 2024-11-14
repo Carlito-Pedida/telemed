@@ -22,7 +22,6 @@ export const createAppointment = async (
       appointment
     );
 
-    revalidatePath("/admin");
     return parseStringify(newAppointment);
   } catch (error) {
     console.log(error);
@@ -74,7 +73,6 @@ export const getRecentAppointmentList = async () => {
       documents: appointments.documents
     };
 
-    revalidatePath("/admin");
     return parseStringify(data);
   } catch (error) {
     console.error("Ann error occurred while retrieving the data:", error);
@@ -115,7 +113,6 @@ export const getAppointment = async (appointmentId: string) => {
       appointmentId
     );
 
-    revalidatePath("/admin");
     return parseStringify(appointment);
   } catch (error) {
     console.log(error);

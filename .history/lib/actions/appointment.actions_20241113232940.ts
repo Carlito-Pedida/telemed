@@ -22,7 +22,6 @@ export const createAppointment = async (
       appointment
     );
 
-    revalidatePath("/admin");
     return parseStringify(newAppointment);
   } catch (error) {
     console.log(error);
@@ -115,7 +114,6 @@ export const getAppointment = async (appointmentId: string) => {
       appointmentId
     );
 
-    revalidatePath("/admin");
     return parseStringify(appointment);
   } catch (error) {
     console.log(error);

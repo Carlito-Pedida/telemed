@@ -44,43 +44,43 @@ export const Physician = [
   {
     image: "/assets/images/dr-cruz.png",
     name: "Janice Gerber - RN, BSN, MS, NP"
-  },
-  {
-    image: "/assets/images/dr-cameron.png",
-    name: "Leila Cameron"
-  },
-  {
-    image: "/assets/images/dr-livingston.png",
-    name: "David Livingston"
-  },
-  {
-    image: "/assets/images/dr-peter.png",
-    name: "Evan Peter"
-  },
-  {
-    image: "/assets/images/dr-powell.png",
-    name: "Jane Powell"
-  },
-  {
-    image: "/assets/images/dr-remirez.png",
-    name: "Alex Ramirez"
-  },
-  {
-    image: "/assets/images/dr-lee.png",
-    name: "Jasmine Lee"
-  },
-  {
-    image: "/assets/images/dr-cruz.png",
-    name: "Alyana Cruz"
-  },
-  {
-    image: "/assets/images/dr-sharma.png",
-    name: "Hardik Sharma"
   }
+  // {
+  //   image: "/assets/images/dr-cameron.png",
+  //   name: "Leila Cameron"
+  // },
+  // {
+  //   image: "/assets/images/dr-livingston.png",
+  //   name: "David Livingston"
+  // },
+  // {
+  //   image: "/assets/images/dr-peter.png",
+  //   name: "Evan Peter"
+  // },
+  // {
+  //   image: "/assets/images/dr-powell.png",
+  //   name: "Jane Powell"
+  // },
+  // {
+  //   image: "/assets/images/dr-remirez.png",
+  //   name: "Alex Ramirez"
+  // },
+  // {
+  //   image: "/assets/images/dr-lee.png",
+  //   name: "Jasmine Lee"
+  // },
+  // {
+  //   image: "/assets/images/dr-cruz.png",
+  //   name: "Alyana Cruz"
+  // },
+  // {
+  //   image: "/assets/images/dr-sharma.png",
+  //   name: "Hardik Sharma"
+  // }
 ];
 
 export const StatusIcon = {
   scheduled: "/assets/icons/check.svg",
-  pending: "/assets/icons/pending.svg",
-  cancelled: "/assets/icons/cancelled.svg"
+  request: "/assets/icons/request.svg",
+  canceled: "/assets/icons/canceled.svg"
 };

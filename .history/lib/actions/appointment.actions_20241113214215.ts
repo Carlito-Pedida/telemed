@@ -22,7 +22,6 @@ export const createAppointment = async (
       appointment
     );
 
-    revalidatePath("/admin");
     return parseStringify(newAppointment);
   } catch (error) {
     console.log(error);
@@ -45,23 +44,12 @@ export const getRecentAppointmentList = async () => {
 
     const counts = (appointments.documents as Appointment[]).reduce(
       (acc, appointment) => {
-        // if (appointment.status === "scheduled") {
-        //   acc.scheduledCount += 1;
-        // } else if (appointment.status === "request") {
-        //   acc.requestCount += 1;
-        // } else if (appointment.status === "canceled") {
-        //   acc.canceledCount += 1;
-        // }
-        switch (appointment.status) {
-          case "scheduled":
-            acc.scheduledCount++;
-            break;
-          case "request":
-            acc.requestCount++;
-            break;
-          case "canceled":
-            acc.canceledCount++;
-            break;
+        if (appointment.status === "scheduled") {
+          acc.scheduledCount += 1;
+        } else if (appointment.status === "request") {
+          acc.requestCount += 1;
+        } else if (appointment.status === "canceled") {
+          acc.canceledCount += 1;
         }
         return acc;
       },
@@ -74,10 +62,9 @@ export const getRecentAppointmentList = async () => {
       documents: appointments.documents
     };
 
-    revalidatePath("/admin");
     return parseStringify(data);
   } catch (error) {
-    console.error("Ann error occurred while retrieving the data:", error);
+    console.log(error);
   }
 };
 
@@ -115,7 +102,6 @@ export const getAppointment = async (appointmentId: string) => {
       appointmentId
     );
 
-    revalidatePath("/admin");
     return parseStringify(appointment);
   } catch (error) {
     console.log(error);

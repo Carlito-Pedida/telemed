@@ -46,7 +46,7 @@ const AppointmentForm = ({
         ? new Date(appointment.schedule)
         : new Date(Date.now()),
       reason: appointment ? appointment.reason : "",
-      note: appointment?.note || "",
+      note: appointment ? appointment.note : "",
       cancellationReason: appointment?.cancellationReason || ""
     }
   });
