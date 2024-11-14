@@ -28,6 +28,20 @@ export const createAppointment = async (
   }
 };
 
+export const getAppointment = async (appointmentId: string) => {
+  try {
+    const appointment = await databases.getDocument(
+      DATABASE_ID!,
+      APPOINTMENT_COLLECTION_ID!,
+      appointmentId
+    );
+
+    return parseStringify(appointment);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getRecentAppointmentList = async () => {
   try {
     const appointments = await databases.listDocuments(
@@ -89,20 +103,6 @@ export const updateAppointment = async ({
     // TODO SMS Notification
     revalidatePath("/admin");
     return parseStringify(updatedAppointment);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getAppointment = async (appointmentId: string) => {
-  try {
-    const appointment = await databases.getDocument(
-      DATABASE_ID!,
-      APPOINTMENT_COLLECTION_ID!,
-      appointmentId
-    );
-
-    return parseStringify(appointment);
   } catch (error) {
     console.log(error);
   }

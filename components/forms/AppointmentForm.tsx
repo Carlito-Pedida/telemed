@@ -2,7 +2,10 @@
 
 import { Form } from "@/components/ui/form";
 import { Physician } from "@/constants";
-import { createAppointment } from "@/lib/actions/appointment.actions";
+import {
+  createAppointment,
+  updateAppointment
+} from "@/lib/actions/appointment.actions";
 import { getAppointmentSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
@@ -14,15 +17,21 @@ import CustomFormField from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { SelectItem } from "../ui/select";
 import { FormFieldType } from "./PatientForm";
+import { Appointment } from "@/types/appwrite.types";
+import { scheduler } from "timers/promises";
 
 const AppointmentForm = ({
   userId,
   patientId,
-  type
+  type,
+  appointment,
+  setOpen
 }: {
   userId: string;
   patientId: string;
   type: "create" | "cancel" | "schedule";
+  appointment?: Appointment;
+  setOpen: (open: boolean) => void;
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -32,11 +41,11 @@ const AppointmentForm = ({
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
-      primaryPhysician: "",
-      schedule: new Date(),
-      reason: "",
-      note: "",
-      cancellationReason: ""
+      primaryPhysician: appointment ? appointment.primaryPhysician : "",
+      schedule: appointment ? new Date(appointment.schedule) : new Date(),
+      reason: appointment ? appointment.reason : "",
+      note: appointment ? appointment.note : "",
+      cancellationReason: appointment?.cancellationReason || ""
     }
   });
 
@@ -50,8 +59,11 @@ const AppointmentForm = ({
       case "schedule":
         status = "scheduled";
         break;
+      case "cancel":
+        status = "canceled";
+        break;
       default:
-        status = "pending";
+        status = "request";
         break;
     }
 
@@ -75,6 +87,26 @@ const AppointmentForm = ({
           router.push(
             `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
           );
+        }
+      } else {
+        const appointmentToUpdate = {
+          userId,
+          appointmentId: appointment?.$id!,
+          appointment: {
+            primaryPhysician: values?.primaryPhysician,
+            schedule: new Date(values?.schedule),
+            reason: values?.reason,
+            note: values?.note,
+            status: status as Status,
+            cancellationReason: values?.cancellationReason
+          },
+          type
+        };
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
         }
       }
     } catch (error) {
@@ -110,10 +142,12 @@ const AppointmentForm = ({
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6 flex-1"
         >
-          <section>
-            <h1 className="header">New appointment</h1>
-            <p>Request a new appointment in 10 seconds</p>
-          </section>
+          {type === "create" && (
+            <section>
+              <h1 className="header">New appointment</h1>
+              <p>Request a new appointment in 10 seconds</p>
+            </section>
+          )}
 
           {type !== "cancel" && (
             <>
@@ -124,8 +158,8 @@ const AppointmentForm = ({
                 label="Physician"
                 placeholder="Select Physician"
               >
-                {Physician.map((doc) => (
-                  <SelectItem key={doc.name} value={doc.name}>
+                {Physician.map((doc, i) => (
+                  <SelectItem key={doc.name + i} value={doc.name}>
                     <div className="flex cursor-pointer items-center gap-2">
                       <Image
                         src={doc.image}
@@ -173,7 +207,7 @@ const AppointmentForm = ({
             <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
-              name="cancellationReaso"
+              name="cancellationReason"
               label="Reason for cancellation"
               placeholder="Please provide reason for cancellation."
             />

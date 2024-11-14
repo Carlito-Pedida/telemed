@@ -1,5 +1,5 @@
 import StatCard from "@/components/StatCard";
-import { columns, Payment } from "@/components/table/columns";
+import { columns } from "@/components/table/columns";
 import { DataTable } from "@/components/table/DataTable";
 import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 import Image from "next/image";
@@ -22,9 +22,7 @@ const Admin = async () => {
           />
         </Link>
 
-        <p className="" text-16-semibold>
-          Admin Dashboard
-        </p>
+        <p className="text-16-semibold">Admin Dashboard</p>
       </header>
       <main className="admin-main">
         <section className="w-full space-y-4">
@@ -43,15 +41,15 @@ const Admin = async () => {
           />
 
           <StatCard
-            type="pending"
-            count={appointments.pendingCount}
-            label="Pending appointments"
-            icon="/assets/icons/pending.svg"
+            type="request"
+            count={appointments.requestCount}
+            label="Appointment Requests"
+            icon="/assets/icons/request.svg"
           />
 
           <StatCard
             type="canceled"
-            count={appointments.canceled}
+            count={appointments.canceledCount}
             label="Canceled appointments"
             icon="/assets/icons/canceled.svg"
           />
